@@ -86,38 +86,40 @@ export default function HomePage() {
 						rows={4}
 						onChange={(e) => setEditContent(e.target.value)}
 					/>
-					<button
-						className="w-full p-4 bg-blue-500 text-white"
-						onClick={async () => {
-							if (editTitle.length === 0 || editContent.length === 0) {
-								alert('Title and Content cannot be empty');
-								return;
-							}
-							await axios.post(
-								'http://localhost:3000/todo/update',
-								{
-									id: editId,
-									title: editTitle,
-									content: editContent,
-								},
-								{
-									withCredentials: true,
+					<div className="grid grid-cols-2 gap-4 w-full">
+						<button
+							className="w-full p-4 bg-blue-500 text-white"
+							onClick={async () => {
+								if (editTitle.length === 0 || editContent.length === 0) {
+									alert('Title and Content cannot be empty');
+									return;
 								}
-							);
-							setEditTitle('');
-							setEditContent('');
-							setIsEditOpen(false);
-							window.location.reload();
-						}}
-					>
-						Edit Todo
-					</button>
-					<button
-						className="w-full p-4 bg-red-500 text-white"
-						onClick={() => setIsEditOpen(false)}
-					>
-						Cancel
-					</button>
+								await axios.post(
+									'http://localhost:3000/todo/update',
+									{
+										id: editId,
+										title: editTitle,
+										content: editContent,
+									},
+									{
+										withCredentials: true,
+									}
+								);
+								setEditTitle('');
+								setEditContent('');
+								setIsEditOpen(false);
+								window.location.reload();
+							}}
+						>
+							Edit Todo
+						</button>
+						<button
+							className="w-full p-4 bg-red-500 text-white"
+							onClick={() => setIsEditOpen(false)}
+						>
+							Cancel
+						</button>
+					</div>
 				</div>
 			) : (
 				<div className="flex flex-col gap-4 p-4 border-2 rounded-md w-full md:w-1/2 mx-auto mt-4">
