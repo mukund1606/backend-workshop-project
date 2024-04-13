@@ -1,0 +1,19 @@
+{
+	"name": "project",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "concurrently \"pnpm --filter frontend run dev\" \"pnpm --filter backend run dev\"",
+		"frontend": "cd frontend && pnpm run dev",
+		"backend": "cd backend && pnpm run dev",
+		"build": "concurrently \"pnpm --filter frontend run build\"",
+		"start": "concurrently \"pnpm --filter frontend run preview\" \"pnpm --filter backend run start\""
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"concurrently": "^8.2.2"
+	}
+}
